@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jdgflow_test
+    username: jdgflow
+    password: jdgflow
+
+jdgflow:
+  jwt:
+    secret: dGVzdF9zZWNyZXRfZm9yX2p3dF9zaWduaW5nX211c3RfYmVfYXRfbGVhc3RfMzJfYnl0ZXNfbG9uZw==
+    ttl: PT1H
+    issuer: jdgflow-test
+  integration:
+    fakturownia:
+      base-url: http://localhost:0
+      api-token: overridden-by-DynamicPropertySource
+      default-page-size: 50
+
+logging:
+  level:
+    root: WARN
+    pl.cafteo.jdgflow: INFO
+    org.flywaydb: WARN

@@ -1,0 +1,25 @@
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: jdgflow-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    ports:
+      - "${MINIO_PORT:-9000}:9000"
+      - "${MINIO_CONSOLE_PORT:-9001}:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+# PostgreSQL is intentionally NOT in this file — runs natively via Homebrew
+# (`brew services start postgresql@18`). Connection: jdgflow/jdgflow @ localhost:5432/jdgflow.
+
+volumes:
+  minio_data:

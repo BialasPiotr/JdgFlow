@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: ${JDGFLOW_DB_URL}
+    username: ${JDGFLOW_DB_USER}
+    password: ${JDGFLOW_DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+
+server:
+  forward-headers-strategy: framework
+
+logging:
+  level:
+    root: WARN
+    pl.cafteo.jdgflow: INFO

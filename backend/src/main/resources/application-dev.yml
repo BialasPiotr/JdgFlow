@@ -1,0 +1,25 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jdgflow
+    username: jdgflow
+    password: jdgflow
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+
+jdgflow:
+  jwt:
+    # Local development fallback — never reaches prod (only the prod profile is active there).
+    # Override with JDGFLOW_JWT_SECRET if you want a fresh signing key.
+    secret: ${JDGFLOW_JWT_SECRET:6mDOPHt5wkE3AmO3bFIDL/9WGaeK2lonTn17hw1rYN2cmuhq3TLN0ePUxZugnrNH}
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
